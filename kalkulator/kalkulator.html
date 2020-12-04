@@ -1,0 +1,98 @@
+<html>
+    <body>
+        <h2>Kalkulator</h2>
+        <input type="text" id="input" name="input" onfocus="this.value = this.value;"><br> 
+        <div id="hasil"></div>
+        <table>
+            <tr>
+                <td><button type="button" onclick="clearHasil()">C</button></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="tambahOngko(1)">1</button></td>
+                <td><button type="button" onclick="tambahOngko(2)">2</button></td>
+                <td><button type="button" onclick="tambahOngko(3)">3</button></td>
+                <td><button type="button" onclick="tambahOngko(4)">4</button></td>
+                <td><button type="button" onclick="tambahOngko(5)">5</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="tambahOngko(6)">6</button></td>
+                <td><button type="button" onclick="tambahOngko(7)">7</button></td>
+                <td><button type="button" onclick="tambahOngko(8)">8</button></td>
+                <td><button type="button" onclick="tambahOngko(9)">9</button></td>
+                <td><button type="button" onclick="tambahOngko(0)">0</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="tambahOngko('+')">+</button></td>
+                <td><button type="button" onclick="tambahOngko('-')">-</button></td>
+                <td><button type="button" onclick="tambahOngko('*')">*</button></td>
+                <td><button type="button" onclick="tambahOngko('/')">/</button></td>
+                <td><button type="button" onclick="tambahOngko('.')">.</button></td>
+            </tr>
+        </table>
+        
+    </body>
+    <script>
+        document.getElementById('input').focus();
+        const source = document.getElementById('input');
+        const result = document.getElementById('hasil');
+        const curs = function(e){
+            source.selectionStart = source.selectionEnd = source.value.length;
+            console.log("onclick");
+        }
+        const inputHandler = function(e) {
+            
+            var regex3 = /[+-.\/*]/g;
+
+            if(ongko(e.data)){
+                //console.log("number");
+                if(validasiOperator(e.target.value,e.data)){
+                    source.value=source.value.substring(0,source.value.length -1);
+                }
+                if(!regex3.test(source.value.substring(source.value.length -1,source.value.length))){
+                    result.innerHTML = eval(e.target.value);
+                }
+                
+            }else{
+                source.value=source.value.replace(e.data,'');
+                //console.log("not");
+                
+            }
+            
+            
+        }
+        source.addEventListener('click',curs);
+        source.addEventListener('input', inputHandler);
+        source.addEventListener('propertychange', inputHandler);
+        
+        function clearHasil(){
+            result.innerHTML='';
+            source.value='';
+            source.focus();
+        }
+        function ongko(string){
+            var regex = /[0-9+-.\/*]/g
+            return regex.test(string);
+        }
+        function validasiOperator(tdata,char){
+            var regex = /[+-.\/*]/g;
+            var regex2 = /[+-.\/*]/g;
+            var str = tdata;
+            var len = str.length;
+            if(regex.test(char)==true){
+                return regex2.test(str.substring(len -2,len -1));
+            }
+            
+        }
+        function tambahOngko(o){
+            var regex4 = /[+-.\/*]/g;
+            source.value += o;
+            if(!regex4.test(source.value.substring(source.value.length -1,source.value.length))){
+                result.innerHTML = eval(source.value);
+            }
+        }
+    </script>
+</html>
