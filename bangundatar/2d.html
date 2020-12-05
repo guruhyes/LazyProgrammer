@@ -1,0 +1,112 @@
+<html>
+    <body>
+        <input type="text" id="ukuran" value="4" >
+        <select name="bangun" id="bangun">
+            <option value="pileh">pileh</option>
+            <option value="kotak">kotak</option>
+            <option value="segitiga">segitiga</option>
+            <option value="segipanjang">segipanjang</option>
+            <option value="jajargenjang">jajargenjang</option>
+            <option value="trapesium">trapesium</option>
+            <option value="ketupat">ketupat</option>
+        </select>
+        <div id="hasil"></div>
+    </body>
+    <script>
+        var selec = document.getElementById("bangun");
+        var out = document.getElementById("hasil");
+        
+        selec.addEventListener("change", function() {
+            var x=document.getElementById("ukuran").value;
+            var y=document.getElementById("ukuran").value;
+            if(selec.value=="kotak"){
+                out.innerHTML = '';
+                for(var i=0;i<y;i++){
+                    out.innerHTML += "*";
+                    for(var j=1;j<x;j++){
+                        out.innerHTML +="*";
+                    }
+                    out.innerHTML +="<br>";
+
+                }
+                console.log("kotak");
+            }else if(selec.value=="segipanjang"){
+                out.innerHTML = '';
+                for(var i=0;i<y;i++){
+                    out.innerHTML += "*";
+                    for(var j=1;j<x*2;j++){
+                        out.innerHTML +="*";
+                    }
+                    out.innerHTML +="<br>";
+
+                }
+                console.log("segipanjang");
+            }else if(selec.value=="segitiga"){
+                out.innerHTML = '';
+                for(var i=0;i<y;i++){
+                    out.innerHTML += "*";
+                    for(var j=0;j<i;j++){
+                        out.innerHTML += "*";
+                    }
+                    out.innerHTML +="<br>";
+                }
+            }else if(selec.value=="jajargenjang"){
+                out.innerHTML = '';
+                for(var i=0;i<y;i++){
+                    for(var k=x-i;0<k;k--){
+                        out.innerHTML +="&nbsp";
+                    }
+                    out.innerHTML += "*";
+                    for(var j=1;j<x;j++){
+                        out.innerHTML +="*";
+                    }
+                    out.innerHTML +="<br>";
+
+                }
+                console.log("jajargenjang");
+            }else if(selec.value=="trapesium"){
+                out.innerHTML='';
+                for(var i=0;i<y;i++){
+                    for(var k=x-i;0<k;k--){
+                        out.innerHTML +="&nbsp";
+                    }
+                    out.innerHTML += "*";
+                    for(var j=1;j<x;j++){
+                        out.innerHTML +="*";
+                    }
+                    for(var l=0;l<i;l++){
+                        out.innerHTML +="*";
+                    }
+                    out.innerHTML +="<br>";
+
+                }
+                console.log("trapesium");
+            }else if(selec.value=="ketupat"){
+                out.innerHTML = '';
+                for(var i=0;i<y;i++){
+                    for(var k=x-i;0<k;k--){
+                        out.innerHTML +="&nbsp";
+                    }
+                    out.innerHTML += "*";
+                    for(var j=1;j<i+1;j++){
+                        out.innerHTML +="*";
+                    }
+                    out.innerHTML +="<br>";
+
+                }
+                for(var m=1;m<y;m++){
+                    for(var n=0;n<m+1;n++){
+                        out.innerHTML +="&nbsp";
+                    }
+                    out.innerHTML += "*";
+                    for(var o=1;o<x-m;o++){
+                        out.innerHTML +="*";
+                    }
+                    out.innerHTML +="<br>";
+
+                }
+                console.log("ketupat");
+            }
+        });
+    </script>
+</html>
