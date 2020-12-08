@@ -6,5 +6,10 @@
 
 # Made when Bored
 
+# Rag Monken di Benakke
+
+# Tidak Mau untuk Memperbaiki
+
+# don't want to fix
 
 
