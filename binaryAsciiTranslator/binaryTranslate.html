@@ -1,0 +1,109 @@
+<html>
+
+    <body>
+
+        <textarea type="text" rows="4" cols="50" id="inpt" ></textarea>
+
+        <div id="demo" style="word-wrap: break-word;"></div>
+    </body>
+
+    <script>
+        var inpt=document.getElementById("inpt");
+        var data='\
+                {\
+                    "65":"01000001",\
+                    "97":"01100001",\
+                    "66":"01000010",\
+                    "98":"01100010",\
+                    "67":"01000011",\
+                    "99":"01100011",\
+                    "68":"01000100",\
+                    "100":"01100100",\
+                    "69":"01000101",\
+                    "101":"01100101",\
+                    "70":"01000110",\
+                    "102":"01100110",\
+                    "71":"01000111",\
+                    "103":"01100111",\
+                    "72":"01001000",\
+                    "104":"01101000",\
+                    "73":"01001001",\
+                    "105":"01101001",\
+                    "74":"01001010",\
+                    "106":"01101010",\
+                    "75":"01001011",\
+                    "107":"01101011",\
+                    "76":"01001100",\
+                    "108":"01101100",\
+                    "77":"01001101",\
+                    "109":"01101101",\
+                    "78":"01001110",\
+                    "110":"01101110",\
+                    "79":"01001111",\
+                    "111":"01101111",\
+                    "80":"01010000",\
+                    "112":"01110000",\
+                    "81":"01010001",\
+                    "113":"01110001",\
+                    "82":"01010010",\
+                    "114":"01110010",\
+                    "83":"01010011",\
+                    "115":"01110011",\
+                    "84":"01010100",\
+                    "116":"01110100",\
+                    "85":"01010101",\
+                    "117":"01110101",\
+                    "86":"01010110",\
+                    "118":"01110110",\
+                    "87":"01010111",\
+                    "119":"01110111",\
+                    "88":"01011000",\
+                    "120":"01111000",\
+                    "89":"01011001",\
+                    "121":"01111001",\
+                    "90":"01011010",\
+                    "122":"01111010",\
+                    "32":"00100000",\
+                    "46":"00101110"\
+                }\
+        ';
+        const inputHandler=function(e){
+                try{
+
+                    var x = e.data.charCodeAt(0);
+
+                    var regex=/[a-zA-Z .]/g
+                    var obj = JSON.parse(data);
+                    if(regex.test(e.data)){
+                        document.getElementById("demo").innerHTML += obj[x];
+                        console.log(e.data);
+                    }else{
+                        
+                        document.getElementById("inpt").value=document.getElementById("inpt").value.replace(e.data,'');
+                        console.log(e.data);
+                    }
+                }catch(f){
+                    console.log("detected");
+                }
+        }
+        const inputKeydown=function(e){
+            var cc=document.getElementById("inpt").value;
+            if(e.keyCode==8){
+                if(cc==""){
+                    document.getElementById("demo").innerHTML = "";
+                }else{
+
+                    document.getElementById("demo").innerHTML = document.getElementById("demo").innerHTML.substring(0,document.getElementById("demo").innerHTML.length -8);
+                }
+                
+                
+            }
+        }
+
+        inpt.addEventListener("input",inputHandler);
+        inpt.addEventListener("propertyChange",inputHandler);
+        inpt.addEventListener("keydown",inputKeydown);
+
+        
+    </script>
+</html>
